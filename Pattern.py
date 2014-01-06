@@ -13,6 +13,8 @@ class Pattern:
 			self.extension = self.filenames[self.filenames.rindex('.'):]
 
 	def toVideo(self, outputPath='output.mpg', frameRate="24"):
+		sys.stdout.write("Writing video...")
+		sys.stdout.flush()
 		subprocess.call([
 			"ffmpeg",
 			"-r", frameRate,		#frame rate
@@ -20,7 +22,8 @@ class Pattern:
 			"-qscale", '1',			#same quality as source
 			"-y", 					#overwrite output
 			outputPath				#output path
-		])
+		], stderr=subprocess.PIPE)
+		sys.stdout.write("done\n")
 		return self
 
 	def apply(self, methodList):
