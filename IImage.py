@@ -31,6 +31,10 @@ class IImage(object):
 	def flipVH(self):
 		return self.flipV().flipH()
 
+	def duplicateMirrorV(self):
+		canvas = IImage((self.width*2, self.height))
+		return canvas.paste(self, 0, 0).paste(self.flipV(), self.width, 0)
+
 	def rotate(self, angle):
 		self.pil = self.pil.rotate(angle)
 		return self
