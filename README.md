@@ -15,11 +15,12 @@ kaleidoscope
 	pattern.apply([
 		'makeSquare', 
 		'mirrorTopRight', 
-		'kaleidoscope'
+		'kaleidoscope',
+		'generateMirrorV'
 	])
 	# expoert the images as a video
 	pattern.toVideo(outputPath="output.mpg")
 
 For reference:
 [video.mp4](http://www.youtube.com/watch?v=Ng36THlVopY),
-[output.mpg](http://www.youtube.com/watch?v=VQNEgCgmBy8)
+[output.mpg](http://www.youtube.com/watch?v=zEO7YMtGUMs)
