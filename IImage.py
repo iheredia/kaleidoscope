@@ -45,6 +45,7 @@ class IImage(object):
 
 	def thumbnail(self, width, height, mode):
 		self.pil.thumbnail((width,height), mode)
+		self.width, self.height = self.pil.size
 		return self
 
 	def compositeWith(self, iimg, mask):
@@ -68,6 +69,7 @@ class IImage(object):
 			(self.height + side) // 2
 		)
 		self.pil = self.pil.crop(box)
+		self.width, self.height = self.pil.size
 		return self
 	
 	def mirrorTopLeft(self):
@@ -126,8 +128,7 @@ class IImage(object):
 		img0 = self.copy().flipH()
 		img1 = self.copy().flipV()
 		img2 = self.copy().flipHV()
-		self = IImage.combine(self, img0, img1, img2)
-		return self
+		return IImage.combine(self, img0, img1, img2)
 
 	@classmethod
 	def combine(cls, iimg0, iimg1, iimg2, iimg3):
