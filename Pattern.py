@@ -7,7 +7,14 @@ class Pattern:
 		self.folder = os.path.split(paths)[0]
 		self.filenames = os.path.split(paths)[1]
 		self.imgPaths = paths
+
+		if not os.path.exists(self.folder):
+			raise Exception('Directory does not exist')
+
 		self.imgNumber = len(os.listdir(self.folder))
+
+		if self.imgNumber == 0:
+			raise Exception('Empty folder')
 
 		if '.' in self.filenames:
 			self.extension = self.filenames[self.filenames.rindex('.'):]
