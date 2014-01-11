@@ -10,6 +10,14 @@ class Video:
 			self.filename = self.filename[:self.filename.rindex('.')]
 
 	def toFrames(self, frameRate="24"):
+		sys.stdout.write("Warning: exporting frames from a " +
+			"video will produce a great ammount of image " + 
+			"files (depending on the video duration)\n" +
+			"Do you wish to continue? (Y/n)\n")
+		response = raw_input()
+		if response in ["n","N","no","No","NO"]:
+			return
+
 		outputDir = self.filename + '_frames/'
 		
 		if not os.path.exists(outputDir):
