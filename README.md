@@ -16,9 +16,9 @@ kaleidoscope
 		'makeSquare', 
 		'mirrorTopRight', 
 		'kaleidoscope',
-		'generateMirrorV'
+		'duplicateMirrorV'
 	])
-	# expoert the images as a video
+	# export the images as a video
 	pattern.toVideo(outputPath="output.mpg")
 
 For reference:
