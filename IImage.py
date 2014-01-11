@@ -124,14 +124,14 @@ class IImage(object):
 		self.pil = Image.blend(self.pil, iimg.pil, alpha)
 		return self
 
-	def kaleidoscope(self):
+	def kaleidoscope(self, keepOriginalSize=True):
 		img0 = self.copy().flipH()
 		img1 = self.copy().flipV()
 		img2 = self.copy().flipHV()
-		return IImage.combine(self, img0, img1, img2)
+		return IImage.combine(self, img0, img1, img2, keepOriginalSize)
 
 	@classmethod
-	def combine(cls, iimg0, iimg1, iimg2, iimg3):
+	def combine(cls, iimg0, iimg1, iimg2, iimg3, keepOriginalSize=True):
 		width, height = iimg0.width, iimg0.height
 		newSize = (width*2, height*2)
 		canvas = IImage(newSize)
@@ -139,5 +139,6 @@ class IImage(object):
 		canvas.paste(iimg1, width, 0)
 		canvas.paste(iimg2, 0, height)
 		canvas.paste(iimg3, width, height)
-
-		return canvas.thumbnail(width, height, Image.NEAREST)
+		if keepOriginalSize:
+			return canvas.thumbnail(width, height, Image.NEAREST)
+		return canvas
